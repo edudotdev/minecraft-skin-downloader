@@ -1,0 +1,19 @@
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.hidden {display: none !important}
+.error {color: red;}
+
+.btnSkin, .btnCape{
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 8px 16px;
+    color: white;
+    text-decoration: none;
+    background-color: rgb(255, 156, 8);
+}
+
+.btnCape {
+    background-color: cornflowerblue;
+}
