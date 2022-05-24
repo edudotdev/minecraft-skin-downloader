@@ -6,41 +6,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/style.css">
   <link href="/dist/output.css" rel="stylesheet">
-  <title>Skins</title>
+  <title>Minecraft Skins Downloader</title>
 </head>
-<body>
-  
-  <form action="submit">
-    <input id='nameUser' type="text" placeholder="user minecraft..."> <button id="search">
-        Search player
-      </button>
-  </form>
-  <br>
+<body class="bg-zinc-700 flex flex-col justify-between min-h-screen">
 
-  <p class="error"></p>
+  <div class="container mx-auto flex flex-col gap-10 my-10 max-w-4xl px-5">
+    <form action="submit" class="w-full flex justify-center">
+      <div class="bg-zinc-800 rounded-sm w-full flex shadow-sm">
+        <input id='nameUser' type="text" placeholder="Minecraft user..." class="font-regular text-xl text-slate-100 py-4 pl-8 w-full bg-transparent outline-none"> 
+        <button id="search" type="submit" class="mc-button bg-emerald-600 hover:bg-emerald-700 transition-colors py-3 px-10 text-white rounded-sm">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+      </div>
+    </form>
 
-  <span class="uuid text-2xl ">
+   
+      <div class="flex flex-col md:flex-row gap-10">
+        <div class="flex flex-col gap-10">
+          <div class="bg-zinc-800 rounded-sm grid place-items-center">
+            <canvas id="skin_container" width="320" class="cursor-grab"></canvas>
+          </div>
+          <div class="flex gap-4">
+            <a id="btnSkin" href="https://crafatar.com/skins/cde6c06eb9254aedbdf29be561fdd3a1" target="_blank" class="grid justify-center font-bold text-2xl mc-button bg-emerald-600 hover:bg-emerald-700 transition-all hover:-translate-y-1 py-5 px-2 w-full">Skin</a>
+          </div>
+        </div>
 
-  </span>
-  <br>
-  
-  <div style="display: flex; gap: 20px; max-height: 400px;">
-    <div class="skin">
-    
-    </div>
-  
-    <div id="rendered_imgs"></div>
+        <div class="flex flex-col gap-5 w-full">
+          <div class="flex flex-col items-center justify-center gap-5">
+            <img id="head" src="./src/images/head.png" alt="" class="w-40">
+            <h1 id="playerName" class="text-white text-4xl font-bold">Steve</h1>
+          </div>
+          <div class="flex flex-col gap-5 w-full">
+            <div class="flex flex-col gap-2">
+              <span class="text-slate-100 font-bold">UUID</span>
+              <div class="flex">
+                <input id="uuid" class="bg-zinc-800 p-4 text-slate-100 w-full outline-none" disabled value="-uuid player" />
+                <button id="copy" class="mc-button bg-emerald-600 hover:bg-emerald-700 py-2 px-4 transition-colors rounded-sm">
+                  <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                </button>
+              </div>
+            </div>
+            <div class="flex flex-col gap-2">
+              <span class="text-slate-100 font-bold">Head Command</span>
+              <div class="flex">
+                <input id="CommandHead" class="bg-zinc-800 p-4 text-slate-100 w-full outline-none" disabled value='-Head Command' />
+                <button id="copy" class="mc-button bg-emerald-600 hover:bg-emerald-700 py-2 px-4 transition-colors rounded-sm">
+                  <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                </button>
+              </div>
+            </div>
+            <div class="flex flex-col gap-2">
+              <span class="text-slate-100 font-bold">Name History</span>
+              <ul id="nameHistory" class="bg-zinc-800 p-4 text-slate-100 w-full">
+                <li>Steve</li>
+                <li>jeb_</li>
+                <li>notch</li>
+                <li>Herobrine</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+   
   </div>
-
-
-  <div class="download">
-    <a class="btnSkin" target="_blank">Download Skin</a>
-    <br>
-    <a class="btnCape" target="_blank">Download Cape</a>
-  </div>
+  <footer class="bg-zinc-700 text-center text-white py-6 flex flex-col gap-3 border-t-2 border-zinc-600">
+    <p>Thank you to <a href="https://crafatar.com" target="_blank" class="text-emerald-400">Crafatar</a> for providing avatars.</p>
+    <p>visit on <a href="https://github.com/edudotdev/minecraft-skin-downloader" target="_blank" class="text-emerald-400">Github</a></p>
+  </footer>
 
   <script src="./js/skinview3d.bundle.js"></script>
-  <script src="./js/main.js"></script>
-  
+  <script src="./js/main.js" type="module"></script>
 </body>
 </html>

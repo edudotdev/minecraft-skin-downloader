@@ -1,77 +1,65 @@
+import skinView from "./skinview.js";
 
+const btnSearch = document.querySelector('#search');
 const nameUser = document.querySelector('#nameUser');
-const search = document.querySelector('#search');
-const uuidText = document.querySelector('.uuid');
-const caja = document.querySelector('.skin')
-const skin = document.createElement('img')
+const inputUUID = document.querySelector('#uuid');
+const inputCommandHead = document.querySelector('#CommandHead');
+const head = document.querySelector('#head');
+const playerName = document.querySelector('#playerName');
+const nameHistory = document.querySelector('#nameHistory');
+const copy = document.querySelectorAll('#copy');
+const btnSkin = document.querySelector('#btnSkin');
 
-const error = document.querySelector('.error');
+// initial skinView
+skinView('../src/images/steve.png')
 
-const btnSkin = document.querySelector('.btnSkin');
-const btnCape = document.querySelector('.btnCape');
-
-search.addEventListener('click', (e) => {
+btnSearch.addEventListener('click', (e) => {
   e.preventDefault()
-  
+
+  if(nameUser.value.length <= 2)  return  
+
   fetch(`https://playerdb.co/api/player/minecraft/${nameUser.value}`)
-    .then(response => response.json())
-    .then(data => {
-      const uuid = data.data.player.raw_id;
-      skin.src = `https://crafatar.com/renders/body/${uuid}`
-      uuidText.innerHTML = `<p>UUID: ${uuid}</p>`
-      const cape = `https://crafatar.com/capes/${uuid}`
-      showSkin(`https://crafatar.com/skins/${uuid}`, cape)
-      btnSkin.href = `https://crafatar.com/skins/${uuid}`
-      btnCape.href = `https://crafatar.com/capes/${uuid}`
-    })
-    .catch(() => {
-      error.innerHTML = `<p>${nameUser.value} dont exist</p>`
-      setTimeout (() => {
-        error.innerHTML = ''
-      }
-      , 2000)
-    })
-  caja.appendChild(skin);
+  .then(response => response.json())
+  .then(data => {
+    data_DOM(data.data.player);
+  })
+  .catch(error => console.log(error, 'player not found, search other player'))
 })
 
-async function showSkin(skin, cape) {
-  const skinViewer = new skinview3d.FXAASkinViewer({
-      width: 200,
-      height: 600,
-      renderPaused: false
-  });
-  skinViewer.camera.rotation.x = -0.620;
-  skinViewer.camera.rotation.y = 0.534;
-  skinViewer.camera.rotation.z = 0.348;
-  skinViewer.camera.position.x = 32.5;
-  skinViewer.camera.position.y = 30.0;
-  skinViewer.camera.position.z = 45.0;
+copy.forEach(btn => { btn.addEventListener('click', e => copyToClipboard(e))})
 
-  await Promise.all([
-      skinViewer.loadSkin(skin),
-      skinViewer.loadCape(cape)
-      .then(() => {
-        console.log('cape loaded');
-        btnCape.classList.remove('hidden')
-      })
-      .catch(() => {
-        console.log('cape not loaded');
-        btnCape.classList.add('hidden')
-      })
-  ]);
-  skinViewer.render();
-  const image = skinViewer.canvas.toDataURL();
+// DOM data
+const data_DOM = (data) => {
+  const {raw_id, username, meta} = data;
 
-  const imgElement = document.createElement("img");
-  imgElement.src = image;
-  imgElement.width = skinViewer.width;
-  imgElement.height = skinViewer.height;
-  while (document.getElementById("rendered_imgs").firstChild) {
-    document.getElementById("rendered_imgs").removeChild(document.getElementById("rendered_imgs").firstChild);
+  inputUUID.value = raw_id; 
+  inputCommandHead.value = `/give @p minecraft:player_head{SkullOwner:"${username}"}`;
+  head.src = `https://crafatar.com/renders/head/${raw_id}`;
+  playerName.innerText = username;
+  rendersNames(meta.name_history);
+  const skin = `https://crafatar.com/skins/${raw_id}`
+  btnSkin.href = skin;
+
+  skinView(skin)
+}
+
+const rendersNames = (names) => {
+  while (nameHistory.firstChild) {
+    nameHistory.removeChild(nameHistory.firstChild);
   }
-  imgElement.style = 'filter: brightness(120%);'
-  document.getElementById("rendered_imgs").appendChild(imgElement)
- 
-  skinViewer.dispose();
-};
+  names.map(name => {
+    const li = document.createElement('li');
+    li.innerText = name.name;
+    document.querySelector('#nameHistory').appendChild(li);
+  })
+}
 
+const copyToClipboard = (e) => {
+  const text = e.target.previousElementSibling.value;
+  const input = document.createElement('input');
+  input.value = text;
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand('copy');
+  document.body.removeChild(input);
+}
