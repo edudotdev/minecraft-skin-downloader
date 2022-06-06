@@ -23,7 +23,9 @@ btnSearch.addEventListener('click', (e) => {
   .then(data => {
     data_DOM(data.data.player);
   })
-  .catch(error => console.log(error, 'player not found, search other player'))
+  .catch(() => {
+    errorFetch()
+  })
 })
 
 copy.forEach(btn => { btn.addEventListener('click', e => copyToClipboard(e))})
@@ -62,4 +64,18 @@ const copyToClipboard = (e) => {
   input.select();
   document.execCommand('copy');
   document.body.removeChild(input);
+}
+
+const errorFetch = () => {
+  const wrapperMain = document.querySelector('body main');
+  const error = document.createElement('p');
+
+  error.innerText = 'Player not found, search other player';
+  error.classList.add('order-2', 'text-center', 'py-3', 'text-xl', 'font-bold', 'mc-error', 'bg-red-400');
+
+  wrapperMain.appendChild(error);
+  setTimeout(() => {
+    wrapperMain.removeChild(error);
+  }
+  , 2500);
 }
