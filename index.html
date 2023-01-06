@@ -6,73 +6,106 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/style.css">
   <link href="/dist/output.css" rel="stylesheet">
-  <title>Minecraft Skins Downloader</title>
+  <title>Minecraft Skin Downloader</title>
 </head>
-<body class="bg-zinc-700 flex flex-col justify-between min-h-screen relative">
+<body class="bg-gray-900 flex flex-col justify-between min-h-screen relative">
+  <main class="container grid mt-5 min-w-full">
+    <div class="flex gap-5 max-w-4xl w-full px-5 mx-auto">
+      <form action="submit" class="w-full flex justify-center order-1">
+        <div class="flex w-full gap-5">
+          <div id="wrapper-input" class="relative w-full">
+            <input id='nameUser' maxlength="16" type="text" placeholder="search minecraft user..." class="font-regular text-lg md:text-xl text-gray-100 py-3 pl-3 sm:pl-5 outline-none bg-gray-700 hover:bg-slate-800 focus:bg-slate-800 border-2 border-gray-700 w-full rounded-md">
+          </div> 
+          <button id="search" type="submit" class="mc-button bg-green-600 hover:bg-green-700 transition-colors px-5 sm:px-10 grid place-content-center text-white">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </button>
+        </div>
+      </form>
+    </div>
 
-  <main class="container mx-auto grid gap-7 my-10 max-w-4xl px-5">
-    <form action="submit" class="w-full flex justify-center order-1">
-      <div class="bg-zinc-800 rounded-sm w-full flex shadow-sm">
-        <input id='nameUser' type="text" placeholder="Minecraft user..." class="font-regular text-xl text-slate-100 py-4 pl-8 w-full bg-transparent outline-none"> 
-        <button id="search" type="submit" class="mc-button bg-emerald-600 hover:bg-emerald-700 transition-colors py-3 px-10 text-white rounded-sm">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+    <div class="flex flex-col md:flex-row gap-10 max-w-4xl w-full px-5 mx-auto mt-5 md:mb-5">
+      <div class="flex flex-col relative">
+        <div class="rounded-sm grid place-items-center">
+          <canvas id="skin_container" class="cursor-grab min-h-[550px]"></canvas>
+        </div>
+        <button id="animation_pause_resume" class="mc-button bg-green-600 hover:bg-green-700 transition-colors py-3 px-4 grid place-content-center text-white absolute right-0 md:-right-4 bottom-9">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
+            <path d="M15 6.75a.75.75 0 00-.75.75V18a.75.75 0 00.75.75h.75a.75.75 0 00.75-.75V7.5a.75.75 0 00-.75-.75H15zM20.25 6.75a.75.75 0 00-.75.75V18c0 .414.336.75.75.75H21a.75.75 0 00.75-.75V7.5a.75.75 0 00-.75-.75h-.75zM5.055 7.06C3.805 6.347 2.25 7.25 2.25 8.69v8.122c0 1.44 1.555 2.343 2.805 1.628l7.108-4.061c1.26-.72 1.26-2.536 0-3.256L5.055 7.061z" />
+          </svg>                        
         </button>
       </div>
-    </form>
-   
-    <div class="flex flex-col md:flex-row gap-10 order-3">
-      <div class="flex flex-col gap-10">
-        <div class="bg-zinc-800 rounded-sm grid place-items-center">
-          <canvas id="skin_container" width="320" class="cursor-grab"></canvas>
+      <div class="flex flex-col gap-4 w-full h-full pb-5 md:pb-9 justify-end">
+        <h1 id="playerName" class="text-white text-5xl font-bold">EduardoRL</h1>
+        <div class="flex flex-col gap-4">
+          <div class="flex flex-col relative">
+            <span class="text-slate-100 font-bold">UUID</span>
+            <button id="uuid" class="text-gray-400 hover:text-gray-200 text-left uuid-text sibling-tooltip relative">
+              <p>6dbd67b7-984d-423b-bc5c-d05996f831c1</p>
+            </button>
+            <span id="tooltipCopy" class="absolute pointer-events-none opacity-0 bg-gray-700 px-3 py-1 text-xs rounded-full text-gray-100 bottom-0 right-0 md:mb-1.5">
+              Copy
+            </span>
+          </div>
+        <div id="wrapper_cape" class="flex items-end gap-4 p-4 bg-slate-800 rounded-xl">
+          <div class="w-[78px] h-[125px] rounded-md overflow-hidden">
+            <img class="min-w-[500px] relative -top-2 -left-2 cape-image" src="http://textures.minecraft.net/texture/2340c0e03dd24a11b15a8b33c2a7e9e32abb2051b2481d0ba7defd635ca7a933" alt="" >
+          </div>
+          <h2 class="text-gray-200 text-xl font-semibold mb-2 text-center md:text-left">Migrator Cape</h2>
         </div>
-        <div class="flex gap-4">
-          <a id="btnSkin" href="https://crafatar.com/skins/cde6c06eb9254aedbdf29be561fdd3a1" target="_blank" class="flex justify-center items-center gap-3 font-bold text-2xl mc-button bg-emerald-600 hover:bg-emerald-700 transition-all hover:-translate-y-1 py-5 px-2 w-full">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>  
-            Skin
-          </a>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button id="btnSkin" data-url="https://crafatar.com/skins/cde6c06eb9254aedbdf29be561fdd3a1" class="flex justify-center items-center gap-3 font-bold text-xl mc-button bg-green-600 hover:bg-green-700 transition-colors py-3 px-2 w-full">
+              Download Skin
+            </button>
+            <a id="btnApply" href="https://www.minecraft.net/profile/skin/remote?url=http://textures.minecraft.net/texture/4ceb7ffc87d2859c7eea8c7aec7bf0265fd866876c1c820ed22cb38dafedee55" target="_blank" class="flex justify-center items-center gap-3 font-bold text-xl mc-button-secondary bg-blue-600 hover:bg-blue-700 transition-colors py-3 px-2 w-full">
+              Apply Skin
+            </a>
+          </div>
         </div>
       </div>
-      <div class="flex flex-col gap-5 w-full">
-        <div class="flex flex-col items-center justify-center gap-5">
-          <img id="head" src="./src/images/head.png" alt="" class="w-40">
-          <h1 id="playerName" class="text-white text-4xl font-bold">Steve</h1>
+    </div>
+
+    <div class="flex bg-gray-800 w-full">
+      <div class="max-w-4xl w-full px-5 py-10 mx-auto">
+        <h2 class="text-gray-100 text-3xl font-semibold mb-8 text-center md:text-left">Player renders</h2>
+        <div class="grid justify-center w-full sm:grid-cols-2 md:grid-cols-3 md:justify-between gap-10">
+          <div class="bg-gray-700 flex flex-col border-8 border-b-0 border-gray-700 rounded-lg overflow-hidden w-full">
+            <div class="p-4 h-full grid place-items-center bg-gray-900 rounded-lg">
+              <img id="skin" loading="lazy" class="w-28 h-full" src="https://mc-heads.net/body/4ceb7ffc87d2859c7eea8c7aec7bf0265fd866876c1c820ed22cb38dafedee55/150" alt="">
+            </div>
+            <div class="bg-gray-700 p-2 text-gray-200 text-center font-semibold">Skin</div>
+          </div>
+          <div class="bg-gray-700 flex flex-col border-8 border-b-0 border-gray-700 rounded-lg overflow-hidden w-full">
+            <div class="p-4 h-full grid place-items-center bg-gray-900 rounded-lg">
+              <img id="head" loading="lazy" class="w-48" src="https://mc-heads.net/head/4ceb7ffc87d2859c7eea8c7aec7bf0265fd866876c1c820ed22cb38dafedee55/250" alt="" >
+            </div>
+            <div class="bg-gray-700 p-2 text-gray-200 text-center font-semibold">Head</div>
+          </div>
+          <div class="bg-gray-700 flex flex-col border-8 border-b-0 border-gray-700 rounded-lg overflow-hidden w-full">
+            <div class="px-4 py-8 h-full grid place-items-center bg-gray-900 rounded-lg">
+              <img id="avatar" loading="lazy" class="w-40 rounded-md" src="https://mc-heads.net/avatar/4ceb7ffc87d2859c7eea8c7aec7bf0265fd866876c1c820ed22cb38dafedee55/250" alt="">
+            </div>
+            <div class="bg-gray-700 p-2 text-gray-200 text-center font-semibold">Avatar</div>
+          </div>
         </div>
-        <div class="flex flex-col gap-5 w-full">
-          <div class="flex flex-col gap-2">
-            <span class="text-slate-100 font-bold">UUID</span>
-            <div class="flex">
-              <input id="uuid" class="bg-zinc-800 p-4 text-slate-100 w-full outline-none" disabled value="-uuid player" />
-              <button id="copy" class="mc-button bg-emerald-600 hover:bg-emerald-700 py-2 px-4 transition-colors rounded-sm">
-                <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
-              </button>
-            </div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <span class="text-slate-100 font-bold">Head Command</span>
-            <div class="flex">
-              <input id="CommandHead" class="bg-zinc-800 p-4 text-slate-100 w-full outline-none" disabled value='-Head Command' />
-              <button id="copy" class="mc-button bg-emerald-600 hover:bg-emerald-700 py-2 px-4 transition-colors rounded-sm">
-                <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
-              </button>
-            </div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <span class="text-slate-100 font-bold">Name History</span>
-            <ul id="nameHistory" class="bg-zinc-800 p-4 text-slate-100 w-full">
-              <li>Steve</li>
-              <li>jeb_</li>
-              <li>notch</li>
-              <li>Herobrine</li>
-            </ul>
-          </div>
+      </div>
+    </div>
+
+    <div class="grid gap-5 max-w-4xl w-full p-5 mx-auto items-center h-40">
+      <div class="flex flex-col gap-4">
+        <h3 class="text-gray-100 text-xl font-semibold">Share this website</h3>
+        <div class="relative">
+          <p id="url" class="text-sm bg-gray-800 hover:bg-gray-700 cursor-pointer text-gray-300 p-3 rounded-md border-2 border-gray-700 sibling-tooltip"></p>
+          <span id="tooltipCopy" class="absolute pointer-events-none opacity-0 bg-gray-800 px-4 py-2 text-xs rounded-md text-gray-100 top-1/2 -translate-y-1/2 right-2">
+            Copy 
+          </span>
         </div>
       </div>
     </div>
   </main>
 
-  <footer class="bg-zinc-700 text-center text-white py-6 flex flex-col gap-3 border-t-2 border-zinc-600">
-    <p>Thank you to <a href="https://crafatar.com" target="_blank" class="text-emerald-400">Crafatar</a> for providing avatars.</p>
-    <p>visit on <a href="https://github.com/edudotdev/minecraft-skin-downloader" target="_blank" class="text-emerald-400">Github</a></p>
+  <footer class="bg-gray-800 text-center text-white py-6 flex flex-col gap-3">
+    <p>Website <a href="https://github.com/edudotdev/minecraft-skin-downloader" target="_blank" class="text-green-400 font-semibold">open source</a> created by <a href="https://twitter.com/edurl_dev" target="_blank" class="text-green-400 font-semibold">Edu</a>.</p>
   </footer>
 
   <script src="./js/skinview3d.bundle.js"></script>
