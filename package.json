@@ -1,0 +1,26 @@
+{
+  "name": "downloader-skin-mc",
+  "version": "1.0.0",
+  "description": "minecraft skins dowloader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edudotdev/minecraft-skin-downloader.git"
+  },
+  "keywords": [
+    "minecraft"
+  ],
+  "author": "eduardorl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edudotdev/minecraft-skin-downloader/issues"
+  },
+  "homepage": "https://github.com/edudotdev/minecraft-skin-downloader#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.0.23"
+  }
+}
