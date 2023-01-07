@@ -70,7 +70,9 @@ const copyToClipboard = (e) => {
 
 // download image
 const downloadImage = async (e) => {
-  const imageSrc = e.target.dataset.url
+  const url = e.target.dataset.url
+  const hash = url.split('/')[url.split('/').length - 1]
+  const imageSrc = `https://mc-api.poke.dev/texture/${hash}`
   const image = await fetch(imageSrc)
   const imageBlog = await image.blob()
   const imageURL = URL.createObjectURL(imageBlog)
