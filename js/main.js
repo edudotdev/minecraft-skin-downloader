@@ -49,11 +49,14 @@ const data_DOM = (playerInfo) => {
 
   btnUUID.innerText = addDashesToUUID(profileId)
   playerName.innerText = profileName;
+
+  // set image  renders
   avatarRender.src = `https://mc-heads.net/avatar/${hash}/120`;
   headRender.src = `https://mc-heads.net/head/${hash}/200`;
   skinRender.src = `https://mc-heads.net/body/${hash}/200`;
-  btnApply.href = `https://www.minecraft.net/profile/skin/remote?url=${skin}`
   
+  btnApply.href = `https://www.minecraft.net/profile/skin/remote?url=${skin}`
+  changeFavicon(`https://mc-heads.net/avatar/${hash}/16`)
   btnSkin.dataset.url = skin;
   skinView(skin)
 }
@@ -66,6 +69,11 @@ const copyToClipboard = (e) => {
   input.select();
   document.execCommand('copy');
   document.body.removeChild(input);
+}
+
+const changeFavicon = (src) => {
+  var link = document.getElementById("favicon");
+  link.href = src;
 }
 
 // download image
@@ -155,4 +163,5 @@ const initApp = async (username) => {
     })
 }
 
+// set default player
 initApp('eduardorl')
