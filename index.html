@@ -5,27 +5,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/style.css">
+  <link id="favicon" rel="icon" href="./src/images/favicon/favicon.png">
   <link href="/dist/output.css" rel="stylesheet">
   <title>Minecraft Skin Downloader</title>
 </head>
 <body class="bg-gray-900 flex flex-col justify-between min-h-screen relative">
-  <main class="container grid mt-5 min-w-full">
-    <div class="flex gap-5 max-w-4xl w-full px-5 mx-auto">
-      <form action="submit" class="w-full flex justify-center order-1">
-        <div class="flex w-full gap-5">
-          <div id="wrapper-input" class="relative w-full">
-            <input id='nameUser' maxlength="16" type="text" placeholder="search minecraft user..." class="font-regular text-lg md:text-xl text-gray-100 py-3 pl-3 sm:pl-5 outline-none bg-gray-700 hover:bg-slate-800 focus:bg-slate-800 border-2 border-gray-700 w-full rounded-md">
-          </div> 
-          <button id="search" type="submit" class="mc-button bg-green-600 hover:bg-green-700 transition-colors px-5 sm:px-10 grid place-content-center text-white">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-          </button>
-        </div>
-      </form>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-10 max-w-4xl w-full px-5 mx-auto mt-5 md:mb-5">
+  <div class="flex gap-5 w-full bg-gray-900 p-5 mx-auto sticky top-0 z-10">
+    <form action="submit" class="w-full flex justify-center max-w-4xl mx-auto">
+      <div class="flex w-full gap-5">
+        <div id="wrapper-input" class="relative w-full">
+          <input id='nameUser' maxlength="16" type="text" placeholder="search minecraft user..." class="font-regular text-lg md:text-xl text-gray-100 py-3 pl-3 sm:pl-5 outline-none bg-gray-700 hover:bg-slate-800 focus:bg-slate-800 border-2 border-gray-700 w-full rounded-md">
+        </div> 
+        <button id="search" type="submit" class="mc-button bg-green-600 hover:bg-green-700 transition-colors px-5 sm:px-10 grid place-content-center text-white">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+      </div>
+    </form>
+  </div>
+  <main class="container grid min-w-full overflow-x-hidden">
+    <div class="flex flex-col md:flex-row gap-10 max-w-4xl w-full px-5 mx-auto md:mb-5">
       <div class="flex flex-col relative">
-        <div class="rounded-sm grid place-items-center">
+        <div class="rounded-sm grid place-items-center mr-10 sm:mr-0">
           <canvas id="skin_container" class="cursor-grab min-h-[550px]"></canvas>
         </div>
         <button id="animation_pause_resume" class="mc-button bg-green-600 hover:bg-green-700 transition-colors py-3 px-4 grid place-content-center text-white absolute right-0 md:-right-4 bottom-9">
@@ -52,7 +52,6 @@
           </div>
           <h2 class="text-gray-200 text-xl font-semibold mb-2 text-center md:text-left">Migrator Cape</h2>
         </div>
-
           <div class="flex flex-col sm:flex-row gap-4">
             <button id="btnSkin" data-url="https://crafatar.com/skins/cde6c06eb9254aedbdf29be561fdd3a1" class="flex justify-center items-center gap-3 font-bold text-xl mc-button bg-green-600 hover:bg-green-700 transition-colors py-3 px-2 w-full">
               Download Skin
@@ -70,19 +69,19 @@
         <h2 class="text-gray-100 text-3xl font-semibold mb-8 text-center md:text-left">Player renders</h2>
         <div class="grid justify-center w-full sm:grid-cols-2 md:grid-cols-3 md:justify-between gap-10">
           <div class="bg-gray-700 flex flex-col border-8 border-b-0 border-gray-700 rounded-lg overflow-hidden w-full">
-            <div class="p-4 h-full grid place-items-center bg-gray-900 rounded-lg">
-              <img id="skin" loading="lazy" class="w-28 h-full" src="https://mc-heads.net/body/4ceb7ffc87d2859c7eea8c7aec7bf0265fd866876c1c820ed22cb38dafedee55/150" alt="">
+            <div class="p-4 h-[300px] grid place-items-center bg-gray-900 rounded-lg">
+              <img id="skin" loading="lazy" width="300" height="400" class="w-28 h-full" src="https://mc-heads.net/body/4ceb7ffc87d2859c7eea8c7aec7bf0265fd866876c1c820ed22cb38dafedee55/150" alt="">
             </div>
             <div class="bg-gray-700 p-2 text-gray-200 text-center font-semibold">Skin</div>
           </div>
           <div class="bg-gray-700 flex flex-col border-8 border-b-0 border-gray-700 rounded-lg overflow-hidden w-full">
-            <div class="p-4 h-full grid place-items-center bg-gray-900 rounded-lg">
+            <div class="p-4 h-[300px] grid place-items-center bg-gray-900 rounded-lg">
               <img id="head" loading="lazy" class="w-48" src="https://mc-heads.net/head/4ceb7ffc87d2859c7eea8c7aec7bf0265fd866876c1c820ed22cb38dafedee55/250" alt="" >
             </div>
             <div class="bg-gray-700 p-2 text-gray-200 text-center font-semibold">Head</div>
           </div>
           <div class="bg-gray-700 flex flex-col border-8 border-b-0 border-gray-700 rounded-lg overflow-hidden w-full">
-            <div class="px-4 py-8 h-full grid place-items-center bg-gray-900 rounded-lg">
+            <div class="px-4 py-8 h-[300px] grid place-items-center bg-gray-900 rounded-lg">
               <img id="avatar" loading="lazy" class="w-40 rounded-md" src="https://mc-heads.net/avatar/4ceb7ffc87d2859c7eea8c7aec7bf0265fd866876c1c820ed22cb38dafedee55/250" alt="">
             </div>
             <div class="bg-gray-700 p-2 text-gray-200 text-center font-semibold">Avatar</div>
