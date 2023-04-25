@@ -164,4 +164,4 @@ const initApp = async (username) => {
 }
 
 // set default player
-initApp('eduardorl')
+initApp('glascky')
