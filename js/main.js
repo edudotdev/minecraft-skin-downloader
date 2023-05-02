@@ -53,7 +53,7 @@ const data_DOM = (playerInfo) => {
   // set image  renders
   avatarRender.src = `https://mc-heads.net/avatar/${hash}/120`;
   headRender.src = `https://mc-heads.net/head/${hash}/200`;
-  skinRender.src = `https://mc-heads.net/body/${hash}/200`;
+  skinRender.src = `https://nmsr.nickac.dev/fullbody/${hash}`;
   
   btnApply.href = `https://www.minecraft.net/profile/skin/remote?url=${skin}`
   changeFavicon(`https://mc-heads.net/avatar/${hash}/16`)
